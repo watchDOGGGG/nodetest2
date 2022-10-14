@@ -1,0 +1,19 @@
+version: '3'
+services:
+  node-test:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4001:4001"
+    volumes:
+      - /apps/node_modules
+      - .:/apps
+  tests:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /apps/node_modules
+      - .:/apps
+    command: ["npm", "run", "test"]
